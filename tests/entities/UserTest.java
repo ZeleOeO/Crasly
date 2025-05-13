@@ -3,6 +3,8 @@ package entities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
@@ -31,13 +33,32 @@ class UserTest {
 
         assertNotNull(user.getText());
         assertEquals("test mESSAGE", user.getText().getMessage());
-        assertEquals(1, chat.getMessages().size());
-        assertEquals("test mESSAGE", chat.getMessages().get(user.getId()));
+        assertEquals(1, chat.getHistory().size());
+
+        assertEquals("test mESSAGE", chat.getHistory().stream().filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), user.getId())).findFirst().get().getText().getMessage());
+        assertEquals("test mESSAGE", chat.getHistory().stream().map(chatMessage -> chatMessage.getUser().getText().getMessage()).findFirst().orElse(null));
 
         other.sendText("other mESSAGE", chat);
         assertNotNull(other.getText());
         assertEquals("other mESSAGE", other.getText().getMessage());
-        assertEquals(2, chat.getMessages().size());
-        assertEquals("other mESSAGE", chat.getMessages().get(other.getId()));
+        assertEquals(2, chat.getHistory().size());
+        assertEquals("other mESSAGE", chat.getHistory().stream().filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), other.getId())).findFirst().get().getText().getMessage());
+    }
+
+    @Test
+    void testReactionText() {
+        user.reactChat(chat, other, Reaction.FUNNY);
+
+    }
+
+    @Test
+    void findUserByIdInHistory() {
+        User user = new User("test") ;
+        user.sendText("test mESSAGE", chat);
+        User newuser = chat.getHistory().stream().filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), user.getId())).findFirst().get().getUser();
+        assertNotNull(newuser);
+        assertEquals("test mESSAGE", newuser.getText().getMessage());
+        assertEquals(1, chat.getHistory().size());
+
     }
 }

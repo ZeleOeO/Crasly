@@ -34,4 +34,14 @@ public class IDGenerator {
         Admin.getAllChat().add(ids);
         return ids;
     }
+
+    static public Long generateIDForChatMessage() {
+        Random random = new Random();
+        Long ids = random.nextLong();
+        if (Admin.getAllText().contains(ids) || ids < 0) {
+            return generateIDForChat();
+        }
+        Admin.getAllChat().add(ids);
+        return ids;
+    }
 }
