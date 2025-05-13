@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class IDGeneratorTest {
     @BeforeEach
     void setUp() {
-        Admin.setAllText(new ArrayList<Long>());
     }
 
     @Test
