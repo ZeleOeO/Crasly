@@ -28,21 +28,21 @@ class IDGeneratorTest {
     void testTextId_AddedToAdminsList() {
         Long textId = IDGenerator.generateIDForText();
         assertNotNull(textId);
-        assertTrue(Admin.getAllText().contains(textId));
+        assertTrue(Admin.getAllTextId().contains(textId));
     }
 
     @Test
     void testUserId_AddedToAdminsList() {
         Long userId = IDGenerator.generateIDForUser();
         assertNotNull(userId);
-        assertTrue(Admin.getAllUsers().contains(userId));
+        assertTrue(Admin.getAllUsersId().contains(userId));
     }
 
     @Test
     void testChatId_AddedToAdminsList() {
         Long chatId = IDGenerator.generateIDForChat();
         assertNotNull(chatId);
-        assertTrue(Admin.getAllChat().contains(chatId));
+        assertTrue(Admin.getAllChatId().contains(chatId));
     }
 
     @Test
@@ -58,6 +58,6 @@ class IDGeneratorTest {
     void testChatMessageId() {
         Long chatId = IDGenerator.generateIDForChatMessage();
         assertNotNull(chatId);
-        assertTrue(Admin.getAllMessagesInAChat().contains(chatId));
+        assertTrue(Admin.getAllMessagesInAChatId().contains(chatId));
     }
 }
