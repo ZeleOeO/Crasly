@@ -5,7 +5,7 @@ import tools.IDGenerator;
 public class User {
     private long id;
     private String username;
-    Text text;
+        private Text text;
 
     public User(String username) {
         this.id = IDGenerator.generateIDForUser();

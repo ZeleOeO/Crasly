@@ -45,10 +45,17 @@ class UserTest {
         assertEquals("other mESSAGE", chat.getHistory().stream().filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), other.getId())).findFirst().get().getText().getMessage());
     }
 
-//    @Test
-//    void testReactionText() {
-//        user.reactChat(chat, other, Reaction.FUNNY);
-//    }
+    @Test
+    void testReactionText() {
+        other.sendText("test mESSAGE", chat);
+        other.sendText("other mESSAGE", chat);
+        ChatMessage chatMessage = chat.getChatMessageByUserId(other.getId());
+        Text text = user.reactChat(chat, chatMessage.getId(), Reaction.NEUTRAL);
+        assertNotNull(text);
+        assertEquals("other mESSAGE", text.getMessage());
+        assertEquals(2, chat.getHistory().size());
+        assertEquals(Reaction.NEUTRAL, text.getReaction());
+    }
 
     @Test
     void findUserByIdInHistory() {

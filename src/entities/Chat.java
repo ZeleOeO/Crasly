@@ -22,20 +22,27 @@ public class Chat {
         this.history = new ArrayList<>();
     }
 
-    public User getUserByChatHistory(long id) {
+    public User getUserByChatHistory(long userId) {
         return this.getHistory()
                 .stream()
-                .filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), id))
+                .filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), userId))
                 .findFirst()
                 .get().getUser();
     }
 
-    public ChatMessage getChatMessageByID(long id) {
+    public ChatMessage getChatMessageByID(long chatMessageId) {
         return this.getHistory()
                 .stream()
-                .filter(chatMessage -> Objects.equals(chatMessage.getId(), id))
+                .filter(chatMessage -> Objects.equals(chatMessage.getId(), chatMessageId))
                 .findFirst()
                 .get();
+    }
+    public ChatMessage getChatMessageByUserId(long userId) {
+        List<ChatMessage> allUserChatMessages = this.getHistory()
+                .stream()
+                .filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), userId))
+                .toList();
+        return allUserChatMessages.isEmpty() ? null : allUserChatMessages.get(allUserChatMessages.size() - 1);
     }
 
     public long getId() {
