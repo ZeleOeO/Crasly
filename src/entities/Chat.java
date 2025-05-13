@@ -22,12 +22,20 @@ public class Chat {
         this.history = new ArrayList<>();
     }
 
-    public User getUserById(long id) {
+    public User getUserByChatHistory(long id) {
         return this.getHistory()
                 .stream()
                 .filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), id))
                 .findFirst()
                 .get().getUser();
+    }
+
+    public ChatMessage getChatMessageByID(long id) {
+        return this.getHistory()
+                .stream()
+                .filter(chatMessage -> Objects.equals(chatMessage.getId(), id))
+                .findFirst()
+                .get();
     }
 
     public long getId() {

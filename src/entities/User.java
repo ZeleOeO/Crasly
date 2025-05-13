@@ -19,8 +19,8 @@ public class User {
         return text;
     }
 
-    public Text reactChat(Chat chat, User receiver, Reaction reaction) {
-        Text text = chat.getUserById(receiver.getId()).getText();
+    public Text reactChat(Chat chat, Long chatMessageId, Reaction reaction) {
+        Text text = chat.getChatMessageByID(chatMessageId).getText();
         text.setReaction(reaction);
         return text;
     }
