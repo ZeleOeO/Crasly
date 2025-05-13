@@ -53,4 +53,11 @@ class IDGeneratorTest {
             assertTrue(textId > 0);
         }
     }
+
+    @Test
+    void testChatMessageId() {
+        Long chatId = IDGenerator.generateIDForChatMessage();
+        assertNotNull(chatId);
+        assertTrue(Admin.getAllMessagesInAChat().contains(chatId));
+    }
 }

@@ -8,7 +8,7 @@ public class Admin {
     private static List<Long> allUsers = new ArrayList<>();
     private static List<Long> allChat = new ArrayList<>();
     private static List<Long> allText = new ArrayList<>();
-    private static HashMap<Long, List<Long>> allMessagesInAChat = new HashMap<>();
+    private static List<Long> allMessagesInAChat = new ArrayList<>();
 
     static public List<Long> getAllUsers() {
         return allUsers;
@@ -22,7 +22,7 @@ public class Admin {
         return allText;
     }
 
-    static public HashMap<Long, List<Long>> getAllMessagesInAChat() {
+    static public List<Long> getAllMessagesInAChat() {
         return allMessagesInAChat;
     }
 
@@ -38,5 +38,7 @@ public class Admin {
         Admin.allText = allText;
     }
 
-    public static void setAllMessagesInAChat(HashMap<Long, List<Long>> allMessagesInAChat) {}
+    public static void setAllMessagesInAChat(List<Long> allMessagesInAChat) {
+        Admin.allMessagesInAChat = allMessagesInAChat;
+    }
 }

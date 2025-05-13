@@ -1,12 +1,15 @@
 package entities;
 
+import tools.IDGenerator;
+
 public class ChatMessage {
-    private long id;
+    private final long id;
     private User user;
     private Text text;
 
-    public ChatMessage(User id, Text text) {
-        this.user = id;
+    public ChatMessage(User user, Text text) {
+        this.id = IDGenerator.generateIDForChatMessage();
+        this.user = user;
         this.text = text;
     }
 

@@ -2,6 +2,7 @@ package tools;
 
 import entities.Admin;
 
+import java.util.List;
 import java.util.Random;
 
 public class IDGenerator {
@@ -38,10 +39,10 @@ public class IDGenerator {
     static public Long generateIDForChatMessage() {
         Random random = new Random();
         Long ids = random.nextLong();
-        if (Admin.getAllText().contains(ids) || ids < 0) {
-            return generateIDForChat();
+        if (Admin.getAllMessagesInAChat().contains(ids)) {
+            return generateIDForChatMessage();
         }
-        Admin.getAllChat().add(ids);
+        Admin.getAllMessagesInAChat().add(ids);
         return ids;
     }
 }
