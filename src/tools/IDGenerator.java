@@ -1,10 +1,8 @@
 package tools;
 
 import entities.Admin;
-import entities.Text;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class IDGenerator {
     static public Long generateIDForUser() {
