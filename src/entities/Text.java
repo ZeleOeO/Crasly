@@ -14,7 +14,7 @@ public class Text {
         this.content = message;
     }
 
-    //Getter And Setter
+    // Getter And Setter
     public long getId() {
         return id;
     }
