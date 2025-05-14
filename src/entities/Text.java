@@ -8,7 +8,7 @@ public class Text {
     private final long id;
     private String content;
 
-    public Text(User sender, String message, Chat chat) {
+    public Text(String message) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.id = IDGenerator.generateIDForText();
         this.content = message;
