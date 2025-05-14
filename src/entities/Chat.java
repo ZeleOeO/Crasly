@@ -2,67 +2,34 @@ package entities;
 
 import tools.IDGenerator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Chat {
     private long id;
-    private User user1;
-    private User user2;
     private String name;
+    private List<User> users;
     private List<ChatMessage> history;
+    private final String createdAt;
 
-    public Chat() {}
-    public Chat(User user1, User user2) {
+    public Chat() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.id = IDGenerator.generateIDForChat();
-        this.user1 = user1;
-        this.user2 = user2;
-        this.name = user1.getUsername() + " and " + user2.getUsername();
+        this.users = new ArrayList<>();
         this.history = new ArrayList<>();
+        this.createdAt = LocalDateTime.now().format(formatter);
     }
 
-    public User getUserByChatHistory(long userId) {
-        return this.getHistory()
-                .stream()
-                .filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), userId))
-                .findFirst()
-                .get().getUser();
-    }
-
-    public ChatMessage getChatMessageByID(long chatMessageId) {
-        return this.getHistory()
-                .stream()
-                .filter(chatMessage -> Objects.equals(chatMessage.getId(), chatMessageId))
-                .findFirst()
-                .get();
-    }
-    public ChatMessage getChatMessageByUserId(long userId) {
-        List<ChatMessage> allUserChatMessages = this.getHistory()
-                .stream()
-                .filter(chatMessage -> Objects.equals(chatMessage.getUser().getId(), userId))
-                .toList();
-        return allUserChatMessages.isEmpty() ? null : allUserChatMessages.get(allUserChatMessages.size() - 1);
-    }
-
+    // Getter And Setter
     public long getId() {
         return id;
     }
 
-    public User getUser1() {
-        return user1;
-    }
-
-    public void setUser1(User user1) {
-        this.user1 = user1;
-    }
-
-    public User getUser2() {
-        return user2;
-    }
-
-    public void setUser2(User user2) {
-        this.user2 = user2;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -73,7 +40,23 @@ public class Chat {
         this.name = name;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     public List<ChatMessage> getHistory() {
-        return this.history;
+        return history;
+    }
+
+    public void setHistory(List<ChatMessage> history) {
+        this.history = history;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
     }
 }

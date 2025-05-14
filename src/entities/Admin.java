@@ -8,7 +8,6 @@ public class Admin {
     private static List<Long> allChatId = new ArrayList<>();
     private static List<Long> allTextId = new ArrayList<>();
     private static List<Long> allMessagesInAChatId = new ArrayList<>();
-    private static
 
     static public List<Long> getAllUsersId() {
         return allUsersId;

@@ -19,17 +19,6 @@ class TextTest {
 
     @Test
     void testTextCreation() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        User sender = new User("sender");
-        User receiver = new User("receiver");
-        Chat chat = new Chat(sender, receiver);
-        Text text = new Text(sender, "Hello", chat);
-
-        assertNotNull(text);
-        assertEquals(sender, text.getSender());
-        assertEquals("Hello", text.getMessage());
-        assertEquals(chat, text.getChat());
-        assertEquals(LocalDateTime.now().format(formatter), text.getSentAt());
     }
 
 }

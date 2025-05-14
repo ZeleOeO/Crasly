@@ -2,30 +2,22 @@ package entities;
 
 import tools.IDGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class User {
     private long id;
     private String username;
-        private Text text;
+    private List<Chat> chats;
 
     public User(String username) {
         this.id = IDGenerator.generateIDForUser();
         this.username = username;
+        this.chats = new ArrayList<>();
     }
 
-
-    public Text sendText(String message, Chat chat) {
-        this.text = new Text(this, message, chat);
-        chat.getHistory().add(new ChatMessage(this, this.getText()));
-        return text;
-    }
-
-    public Text reactChat(Chat chat, Long chatMessageId, Reaction reaction) {
-        Text text = chat.getChatMessageByID(chatMessageId).getText();
-        text.setReaction(reaction);
-        return text;
-    }
-
-    //Getters And Setters
+    // Getter And Setter
     public long getId() {
         return id;
     }
@@ -42,7 +34,11 @@ public class User {
         this.username = username;
     }
 
-    public Text getText() {
-        return text;
+    public List<Chat> getChats() {
+        return chats;
+    }
+
+    public void setChats(List<Chat> chats) {
+        this.chats = chats;
     }
 }
