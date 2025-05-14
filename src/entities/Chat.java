@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Chat {
     private long id;
     private String name;
+    private User groupAdmin;
     private List<User> users;
     private List<ChatMessage> history;
     private final String createdAt;
@@ -58,5 +59,13 @@ public class Chat {
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public User getGroupAdmin() {
+        return groupAdmin;
+    }
+
+    public void setGroupAdmin(User groupAdmin) {
+        this.groupAdmin = groupAdmin;
     }
 }
