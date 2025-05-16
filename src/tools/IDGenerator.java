@@ -4,7 +4,8 @@ import entities.Admin;
 
 import java.util.Random;
 
-public class IDGenerator {
+public final class IDGenerator {
+    private IDGenerator() {}
     static public Long generateIDForUser() {
         Random random = new Random();
         Long ids = random.nextLong();
